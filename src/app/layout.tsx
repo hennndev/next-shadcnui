@@ -4,6 +4,9 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from "@/components/theme-provider" 
 const inter = Inter({ subsets: ['latin'] })
 import Navbar from '@/components/layout/navbar'
+import Sidebar from '@/components/layout/sidebar'
+import { Fragment } from 'react'
+
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,9 +22,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar/>
-          {children}
+        <ThemeProvider attribute="class" enableSystem>
+          <main className="flex flex-col h-screen">
+            <Navbar/>
+            <section className="px-5 lg:flex container">
+              <Sidebar/>
+              {children}
+            </section>
+          </main>
         </ThemeProvider>
       </body>
     </html>

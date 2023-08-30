@@ -1,39 +1,36 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-import { ChevronLeftCircle } from "lucide-react"
+import React from 'react'
+import { ScrollArea } from '../ui/scroll-area'
 
-export function Sidebar() {
+const Sidebar = () => {
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="mr-1 border-none ">
-          <ChevronLeftCircle className="w-[1.2rem] h-[1.2rem]"/>
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="left">
-        <SheetHeader className="mb-5 text-left">
-          <SheetTitle>SmartCourses</SheetTitle>
-        </SheetHeader>
-        <div className="flex flex-col space-y-4">
-          <h2 className="cursor-pointer">Homepage</h2>
-          <h2 className="cursor-pointer">Courses</h2>
-          <h2 className="cursor-pointer">Admin</h2>
+    <aside className="hidden lg:block sticky overflow-y-scroll scrollbar-hide top-0 w-[200px] py-5 mr-5">
+      <div className="relative ">
+        <div className="flex flex-col">
+          <div className="flex flex-col mb-10">
+            <h1 className="font-semibold mb-4">Programming</h1>
+            <div className="flex flex-col space-y-4">
+              <p className="text-[15px] text-gray-600 dark:text-gray-500">Javascript</p>
+              <p className="text-[15px] text-gray-600 dark:text-gray-500">ReactJS</p>
+              <p className="text-[15px] text-gray-600 dark:text-gray-500">NextJS</p>
+              <p className="text-[15px] text-gray-600 dark:text-gray-500">NodeJS</p>
+              <p className="text-[15px] text-gray-600 dark:text-gray-500">Java</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <h1 className="font-semibold mb-4">Courses</h1>
+            <div className="flex flex-col space-y-4">
+              <p className="text-[15px] text-gray-600 dark:text-gray-500">Struktur data</p>
+              <p className="text-[15px] text-gray-600 dark:text-gray-500">Sistem operasi</p>
+              <p className="text-[15px] text-gray-600 dark:text-gray-500">Algoritma pemrograman</p>
+              <p className="text-[15px] text-gray-600 dark:text-gray-500">Basis data</p>
+              <p className="text-[15px] text-gray-600 dark:text-gray-500">Java</p>
+            </div>
+          </div>
         </div>
-        <SheetFooter>
-        
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
+      </div>
+    </aside>
   )
 }
+
+export default Sidebar

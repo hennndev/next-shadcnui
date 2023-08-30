@@ -1,17 +1,16 @@
 import React from 'react'
+import SideMenu from './sideMenu'
+import { Input } from '../ui/input'
+import { Search } from "lucide-react"
 import { ModeToggle } from '../ui/modeToggle'
 import { AuthModal } from '../auth/authModal'
-import { Input } from '../ui/input'
-import { Search, ChevronLeftCircle } from "lucide-react"
-import { Button } from '../ui/button'
-import { Sidebar } from './sidebar'
 
 const Navbar = () => {
   return (
-    <header className="border-b dark:border-gray-800 border-gray-200 py-3">
-      <div className="container px-3 flex-between">
+    <header className="border-b dark:border-gray-800 border-gray-200 py-3 px-5 sticky top-0 z-10 bg-background">
+      <div className="container flex-between">
         <div className="flexx flex-1 md:flex-[0.8] lg:hidden">
-          <Sidebar/>
+          <SideMenu/>
           <div className="flexx flex-1 mr-5 border border-input rounded-md px-3 dark:hover:bg-gray-900 hover:bg-gray-100 cursor-pointer">
             <Search className="mr-2 cursor-pointer w-[1.2rem] h-[1.2rem]"/>
             <Input placeholder="Search courses..." className="border-none flex-1 outline-none bg-transparent"/>
