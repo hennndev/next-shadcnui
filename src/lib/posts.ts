@@ -11,8 +11,6 @@ const cwd = path.join(process.cwd(), "src", "static_posts")
 export async function getPost(folder: string, file: string) {
   const filePath = path.join(cwd, folder, `${file}.mdx`)
   const fileContents = fs.readFileSync(filePath, "utf8")
-
-
   const { frontmatter, content } = await compileMDX<{
     title: string,
     date: Date,
@@ -48,20 +46,24 @@ export function getPostsMeta() {
   const posstDir = fs.readdirSync(cwd)
   return posstDir.map(dir => ({dir: dir}))
 }
+
+
 export function getPostModulMeta() {
   
 }
 
-export function getPostMeta(folderName: string) {
+export function getPostMeta(folderName: string): BlogTypes[] | undefined {
   const folderPath = path.join(cwd, folderName)
-  const fileNames = fs.readdirSync(folderPath)
 
+  if(!fs.existsSync(folderPath)) return undefined
+  const fileNames = fs.readdirSync(folderPath)
+  
   return fileNames.map((fileName) => {
     const id = fileName.replace(/\.mdx$/, '')
     const filePath = path.join(folderPath, fileName)
     const fileContents = fs.readFileSync(filePath, "utf8")
     const matterResult = matter(fileContents)
-  
+    
     const post: BlogTypes = {
       id, 
       title: matterResult.data.title,

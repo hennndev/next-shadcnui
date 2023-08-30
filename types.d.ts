@@ -9,3 +9,8 @@ type BlogPost = {
   meta: Meta,
   content: ReactElement<any, string | JSXElementConstructor<any>>,
 }
+
+
+type DataContent = {
+  content: ReactElement<any, string | JSXElementConstructor<any>>
+}

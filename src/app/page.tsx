@@ -8,9 +8,9 @@ export const metadata = {
 
 const Home = () => {
   return (
-    <div className="flex-1 py-5">
-      <h1>Home</h1>
-    </div>
+      <div className="flex-1 py-5">
+        <h1>Home</h1>
+      </div>
   )
 }
 

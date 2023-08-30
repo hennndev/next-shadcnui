@@ -1,20 +1,30 @@
+"use client"
+import { MutableRefObject, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
+  SheetClose,
   SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { ScrollArea } from "../ui/scroll-area"
+import Link from "next/link"
 import { ChevronLeftCircle } from "lucide-react"
+import { usePathname } from "next/navigation"
 
 export default function SideMenu() {
+
+  const pathname = usePathname()
+  const currentPath = pathname.split("/")[2]
+  const btnRef = useRef<HTMLButtonElement | null>(null)
+
+  const handleClose = () => {
+    btnRef.current?.click()
+  }
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -26,51 +36,24 @@ export default function SideMenu() {
         <SheetHeader className="mb-5 text-left">
           <SheetTitle>SmartCourses</SheetTitle>
         </SheetHeader>
-        <div className="flex flex-col">
-          <div className="flex flex-col mb-5">
-            <h1 className="font-semibold mb-4">Navigations</h1>
-            <div className="flex flex-col space-y-3">
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Home</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Blogs</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">About</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Dashboard</p>
-            </div>
-          </div>
-
-          <div className="flex flex-col mb-5">
-            <h1 className="font-semibold mb-4">Programming</h1>
-            <div className="flex flex-col space-y-3">
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Javascript</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">ReactJS</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">NextJS</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">NodeJS</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Java</p>
-            </div>
-          </div>
-          <div className="flex flex-col mb-5">
-            <h1 className="font-semibold mb-4">Programming</h1>
-            <div className="flex flex-col space-y-3">
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Javascript</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">ReactJS</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">NextJS</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">NodeJS</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Java</p>
-            </div>
-          </div>
-
+        <div className="flex flex-col">          
           <div className="flex flex-col">
             <h1 className="font-semibold mb-4">Courses</h1>
             <div className="flex flex-col space-y-3">
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Struktur data</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Sistem operasi</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Algoritma pemrograman</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Basis data</p>
-              <p className="text-[15px] text-gray-600 dark:text-gray-500">Java</p>
+              <Link onClick={handleClose} href="/courses/struktur_data" className={`${currentPath === "struktur_data" ? "" : "text-gray-600 dark:text-gray-400"} text-[15px] font-medium`}>
+                Struktur Data
+              </Link>
+              <Link onClick={handleClose} href="/courses/algoritma_pemrograman" className={`${currentPath === "algoritma_pemrograman" ? "" : "text-gray-600 dark:text-gray-400"} text-[15px] font-medium`}>
+                Algoritma Pemrograman
+              </Link>
             </div>
           </div>
         </div>
         <SheetFooter>
-        </SheetFooter>
+            <SheetClose asChild>
+              <Button type="submit" ref={btnRef} className="hidden">Save changes</Button>
+            </SheetClose>
+          </SheetFooter>
       </SheetContent>
     </Sheet>
   )

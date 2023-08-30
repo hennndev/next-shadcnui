@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import SideMenu from './sideMenu'
 import { Input } from '../ui/input'
 import { Search } from "lucide-react"
@@ -19,9 +20,7 @@ const Navbar = () => {
         <div className="lg:flexx hidden">
           <h1 className="font-extrabold mr-10">SmartCourses</h1>
           <nav className="flexx">
-            <p className="font-medium mr-5">Homepage</p>
-            <p className="font-medium mr-5">Courses</p>
-            <p className="font-medium">Admin</p>
+            <Link href="/" className="font-medium">Courses</Link>
           </nav>
         </div>
         <div className="flexx">

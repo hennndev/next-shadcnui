@@ -1,11 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { ThemeProvider } from "@/components/theme-provider" 
 const inter = Inter({ subsets: ['latin'] })
 import Navbar from '@/components/layout/navbar'
 import Sidebar from '@/components/layout/sidebar'
-import { Fragment } from 'react'
+import { ThemeProvider } from "@/components/theme-provider" 
+
 
 
 export const metadata: Metadata = {
@@ -25,9 +25,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <ThemeProvider attribute="class" enableSystem>
           <main className="flex flex-col h-screen">
             <Navbar/>
-            <section className="px-5 lg:flex container">
-              <Sidebar/>
-              {children}
+            <section className="px-5">
+              <div className="lg:flex container">
+                <Sidebar/>
+                {children}
+              </div>
             </section>
           </main>
         </ThemeProvider>

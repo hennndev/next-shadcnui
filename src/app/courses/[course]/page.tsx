@@ -1,6 +1,7 @@
 import React from 'react'
 import Posts from '@/components/posts/posts'
 import { getPostMeta, getPostsMeta } from '@/lib/posts'
+import { notFound } from 'next/navigation'
 
 
 export function generateStaticParams() {
@@ -23,6 +24,8 @@ export function generateMetadata({params: {course}}: {params: {course: string}})
 }
 const Course = ({params: {course}}: {params: {course: string}}) => {
   const courseData = getPostMeta(course)
+  if(!courseData) return notFound()
+
   return (
     <div className="lg:flex-1 py-5">
       <h1 className="font-bold text-2xl lg:text-3xl">#{course}</h1>
